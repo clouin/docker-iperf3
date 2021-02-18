@@ -7,7 +7,7 @@ Iperf3 Docker Image based on Alpine Linux.
 ### Show the Iperf Options
 
 ```bash
-docker run jerryin/iperf3 --help
+docker run --rm jerryin/iperf3 --help
 ```
 
 ### Iperf3 Server
@@ -15,7 +15,7 @@ docker run jerryin/iperf3 --help
 Start a listener service on port 5201 and name the container "iperf3-server":
 
 ```bash
-docker run -it --rm --name=iperf3-server -p 5201:5201 jerryin/iperf3 -s
+docker run --name=iperf3-server -it --rm -p 5201:5201 jerryin/iperf3 -s
 ```
 
 That returns an iperf3 process bound to a socket waiting for new connections:
@@ -24,6 +24,28 @@ That returns an iperf3 process bound to a socket waiting for new connections:
 -----------------------------------------------------------
 Server listening on 5201
 -----------------------------------------------------------
+```
+
+Or background:
+
+```bash
+docker run --restart=always --name=iperf3-server -dit -p 5201:5201 jerryin/iperf3 -s
+```
+
+Or `docker-compose`:
+
+```yml
+version: '3'
+
+services:
+  iperf3:
+    image: jerryin/iperf3
+    restart: always
+    ports:
+      - 5201:5201
+    stdin_open: true
+    tty: true
+    command: -s
 ```
 
 ### Iperf3 Client
@@ -43,7 +65,7 @@ return:
 Next,run a client container pointing at the server service IP address:
 
 ```bash
-docker run  -it --rm jerryin/iperf3 -c 172.17.0.2
+docker run -it --rm jerryin/iperf3 -c 172.17.0.2
 ```
 
 And the output is the following:

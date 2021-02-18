@@ -1,5 +1,5 @@
-FROM alpine:20200917
+FROM alpine:3.13
 
-RUN apk add --no-cache iperf3=3.9-r0
+RUN apk add --no-cache iperf3=3.9-r1
 
 ENTRYPOINT ["/usr/bin/iperf3"]
