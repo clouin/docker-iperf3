@@ -1,5 +1,9 @@
-FROM alpine:3.14
+ARG ALPINE_VERSION=edge
 
-RUN apk add --no-cache iperf3=3.10.1-r0
+FROM alpine:${ALPINE_VERSION}
+
+ARG IPERF3_VERSION=3.11-r0
+
+RUN apk add --no-cache iperf3=${IPERF3_VERSION}
 
 ENTRYPOINT ["/usr/bin/iperf3"]
