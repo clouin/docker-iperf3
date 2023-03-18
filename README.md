@@ -1,4 +1,4 @@
-# iperf3-docker
+# Docker Iperf3
 
 Iperf3 Docker Image based on Alpine Linux.
 

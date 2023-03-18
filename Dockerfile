@@ -1,6 +1,4 @@
-ARG ALPINE_VERSION=edge
-
-FROM alpine:${ALPINE_VERSION}
+FROM alpine:edge
 
 ARG IPERF3_VERSION=3.13-r0
 
