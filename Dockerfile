@@ -1,6 +1,8 @@
 FROM alpine:edge
 
-ARG IPERF3_VERSION=3.14-r0
+LABEL maintainer = Jerry
+
+ARG IPERF3_VERSION=3.16-r0
 
 RUN apk add --no-cache iperf3=${IPERF3_VERSION}
 
